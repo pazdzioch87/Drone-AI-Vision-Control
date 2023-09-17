@@ -1,0 +1,13 @@
+yolo detect predict model=yolov8n.pt source='rtmp://172.19.161.123:1935/stream/stream' show=True
+yolo detect predict model=yolov8n.pt source='0' show=True
+
+
+ultralytics/ultralytics
+
+
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+  
+docker build -t mpazdan/ai_vision .  
+docker run -it --name my_ai_vision mpazdan/ai_vision --source=0 --weights=yolov8s.pt --show-preview=True
+docker run -it --name my-fibo mpazdan/fibo --num=5 -c=Terefer

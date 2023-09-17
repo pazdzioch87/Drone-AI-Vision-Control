@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  controlapi:
+    container_name: controlbroker
+    networks:
+      - mynetwork
+    build:
+      context: ./ControlBroker
+      dockerfile: Dockerfile    
+    ports:
+      - 8001:8001
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - 'ASPNETCORE_URLS=http://+'
+    stdin_open: true
+    tty: true
+
+  nginx:
+    container_name: my_nginx_rtmp
+    ports:
+      - 1935:1935
+      - 7777:7777
+    networks:
+      - mynetwork
+    build:
+      context: ./StreamingServer
+      dockerfile: Dockerfile
+
+  aivision:
+    container_name: aivision
+    build:
+      context: ./AIVisionProcessing
+      dockerfile: Dockerfile
+    networks:
+      - mynetwork
+    command:
+      --source="rtmp://nginx/stream/stream"
+      --weights="drone_gestures.pt"
+      --process-connection
+      # --show-preview #we should not pass this argument because container don't have graphic card & displays
+
+  ngrok:
+    image: ngrok/ngrok:latest
+    ports:
+      - "4040:4040"
+    command: ["http", "controlapi:8001"]
+    networks:
+      - mynetwork
+    environment:
+      NGROK_AUTHTOKEN: 2VL8Uov7akZDvOGASLKkr30aHLv_2pkihFociGfSgiR6CSbCw
+    depends_on: [controlapi]
+  #   command: ["http", "host.docker.internal:8001"] // no network conf here cause its host ip
+      
+networks:
+  mynetwork:
+    driver: bridge

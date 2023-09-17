@@ -1,0 +1,11 @@
+# Ultralytics requirements
+# Usage: pip install -r requirements.txt
+
+# Base ----------------------------------------
+ultralytics>=8.0.169
+signalrcore>=0.9.5
+supervision==0.14.0
+numpy>=1.22.2 # pinned by Snyk to avoid a vulnerability
+opencv-python>=4.6.0
+torch>=1.7.0
+
