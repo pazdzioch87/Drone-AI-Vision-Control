@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "AI Vision",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/run.py",
+            // "args" : ["--source", "0", "--weights", "yolov8s.pt", "--show-preview", "--process-connection"],
+            // "args" : ["--source", "0", "--weights", "drone_gestures.pt", "--show-preview", "--process-connection"],
+            "args" : ["--source", "rtmp://192.168.1.18:1935/app/stream", "--weights", "drone_gestures.pt", "--show-preview", "--process-connection"],
+            "console": "integratedTerminal",
+            "justMyCode": false
+        }
+    ]
+}

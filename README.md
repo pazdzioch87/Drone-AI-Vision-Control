@@ -10,7 +10,7 @@
 This demo is the proof of concept of drones and AI vision combination. If we can enforce the drone to take off and landing by gestures we can also do mach more complicated tasks. The only limitation is our imagination :)
 
 ## :hammer: Tech setup
-This demo is prepared to use with **DJI** drones which supports MobileSDK **4.16.4** (V5 drones are not supported). In my case it is DJI Mini 2.
+This demo is prepared to use with **DJI** drones which supports MobileSDK **4.16.4** (V5 drones are not supported - like Mini 3 series). In my case it is DJI Mini 2.
 You can find [drone application](https://github.com/pazdzioch87/remote_guard_drone) on my another repository which is fork from original DJI sample. This application has three main tasks: 
 - send RTMP stream
 - receive SignalR masseges 
@@ -18,26 +18,44 @@ You can find [drone application](https://github.com/pazdzioch87/remote_guard_dro
 **For more details look on "Diagram_Drone_Complex.png"**
 
 > **Note**
-For simplicity: you can also run this Demo without any drone - by using **OBS Studio** as a RTMP stream provider. You can also preview the commands being (normally to drone) sent in ControlBroker debug console.
+For simplicity: you can also run this Demo without any drone - by using **OBS Studio** as a RTMP stream provider. You can also preview the commands being sent (normally to drone) in ControlBroker debug console.
 **For more details look on "Diagram_OBS_Simple.png"**
 
 
 
 ## 💻 Install
 
+**1.** Run ControlBroker service to handle SignalR communication
 ```bash
-# create python virtual environment
-python3 -m venv venv
-
-# activate the virtual environment
-source venv/bin/activate
-
+# from the main repo directory - call following command:
+docker compose up controlapi
+```
+**2.** Start up Nginx with RTMP module to handle RTMP stream (from Drone or from OBS)
+```bash
+# from the main repo directory - call following command:
+docker compose up nginx
+```
+**3.** Run Ngrok to publish services endpoint to the internet (required only for drone verion - complex)
+```bash
+# this step let us to avoid router and OS firewall which could bloks services port - preventing correct work
+docker compose up ngrok
 # install dependencies
 pip install -r requirements.txt
 ```
+**4.** Set up [drone application](https://github.com/pazdzioch87/remote_guard_drone) or forward your PC camera by OBS Studio to Nginx service.
+Depending on your local IP addres it could be something like that: rtmp://192.168.1.XX:1935/app/stream
+Port 1935 and "app" is obligatory. It is due to the nginx configuration. Stream key ("stream" in my case) could be set as you wish.
 
+**5.** Now when we have video stream provided we can run computer vision processing.
+```bash
+# go to AIVisionProcessing directory and run terminal
+# install dependencies
+pip install -r requirements.txt
+
+```
 ## 📸 Execute
 
 ```bash
-python3 -m run
+# still in the AIVisionProcessing directory context
+python run.py --source rtmp://192.168.1.18:1935/app/stream --weights drone_gestures.pt --show-preview --process-connection
 ```
