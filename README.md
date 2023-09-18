@@ -7,7 +7,7 @@
 </p>
 
 ## :book: Introduction
-This demo is the proof of concept of drones and AI vision combination. If we can enforce the drone to take off and landing by gestures we can also do mach more complicated tasks. The only limitation is our imagination :)
+This demo is the proof of concept of drones and AI vision combination. If we can enforce the drone to take off and landing by gestures we can also do mach more complicated tasks. The only limitation is our imagination :rocket: :)
 
 ## :hammer: Tech setup
 This demo is prepared to use with **DJI** drones which supports MobileSDK **4.16.4** (V5 drones are not supported - like Mini 3 series). In my case it is DJI Mini 2.
@@ -39,8 +39,7 @@ docker compose up nginx
 If you want to try it with OBS you can skip that step.
 ```bash
 # this step let us to avoid router and OS firewall which could bloks services port - preventing correct work
-# before we run ngrok we had to place our personal auth token to the docker-compose.yml
-# righ here NGROK_AUTHTOKEN: YOUR_NGROK_AUTH_TOKEN_HERE
+# before we run ngrok we had to place our personal auth token to the ngrok.yml
 
 # run ngrok
 docker compose up ngrok

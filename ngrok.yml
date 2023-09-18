@@ -7,7 +7,7 @@ heartbeat_tolerance: 5s
 inspect_db_size: 104857600 # 100mb
 log_level: info
 log_format: json
-region: eu
+region: us
 remote_management: false
 update_channel: stable
 update_check: false

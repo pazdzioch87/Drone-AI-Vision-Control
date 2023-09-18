@@ -40,7 +40,7 @@ services:
       --process-connection
       # --show-preview #we should not pass this argument because container doesn't have possibility to display anything
  
-  ngrok2:
+  ngrok:
     image: ngrok/ngrok:latest
     restart: unless-stopped
     command:
