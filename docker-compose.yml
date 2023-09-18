@@ -38,20 +38,8 @@ services:
       --source="rtmp://nginx/stream/stream"
       --weights="drone_gestures.pt"
       --process-connection
-      # --show-preview #we should not pass this argument because container don't have graphic card & displays
-
-  ngrok:
-    image: ngrok/ngrok:latest
-    ports:
-      - "4040:4040"
-    command: ["http", "controlapi:8001"]
-    networks:
-      - mynetwork
-    environment:
-      NGROK_AUTHTOKEN: YOUR_NGROK_AUTH_TOKEN_HERE
-    depends_on: [controlapi]
-  #   command: ["http", "host.docker.internal:8001"] // no network conf here cause its host ip
-      
+      # --show-preview #we should not pass this argument because container doesn't have possibility to display anything
+ 
   ngrok2:
     image: ngrok/ngrok:latest
     restart: unless-stopped
