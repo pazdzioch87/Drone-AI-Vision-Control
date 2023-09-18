@@ -48,10 +48,24 @@ services:
     networks:
       - mynetwork
     environment:
-      NGROK_AUTHTOKEN: 2VL8Uov7akZDvOGASLKkr30aHLv_2pkihFociGfSgiR6CSbCw
+      NGROK_AUTHTOKEN: YOUR_NGROK_AUTH_TOKEN_HERE
     depends_on: [controlapi]
   #   command: ["http", "host.docker.internal:8001"] // no network conf here cause its host ip
       
+  ngrok2:
+    image: ngrok/ngrok:latest
+    restart: unless-stopped
+    command:
+      - "start"
+      - "--all"
+      - "--config"
+      - "/etc/ngrok.yml"
+    volumes:
+      - ./ngrok.yml:/etc/ngrok.yml
+    ports:
+      - 4040:4040   
+    networks:
+      - mynetwork     
 networks:
   mynetwork:
     driver: bridge

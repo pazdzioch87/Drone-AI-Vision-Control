@@ -23,7 +23,7 @@ For simplicity: you can also run this Demo without any drone - by using **OBS St
 
 
 
-## 💻 Install (Docker required)
+## 💻 Install (Docker & Ngrok account required)
 Installation instruction assumes that docker engine and docker compose plugin are installed on your machine.
 **1.** Run ControlBroker service to handle SignalR communication
 ```bash
@@ -35,12 +35,14 @@ docker compose up controlapi
 # from the main repo directory - call following command:
 docker compose up nginx
 ```
-**3.** Run Ngrok to publish services endpoint to the internet (required only for drone verion - complex)
+**3.** Run Ngrok to publish services endpoint to the internet (required only for drone verion - complex). Please read what Ngrok is and please be aware of publishing your machine port to the internet.
 ```bash
 # this step let us to avoid router and OS firewall which could bloks services port - preventing correct work
+# before we run ngrok we had to place our personal auth token to the docker-compose.yml
+# righ here NGROK_AUTHTOKEN: YOUR_NGROK_AUTH_TOKEN_HERE
+
+# run ngrok
 docker compose up ngrok
-# install dependencies
-pip install -r requirements.txt
 ```
 **4.** Set up [drone application](https://github.com/pazdzioch87/remote_guard_drone) or forward your PC camera by OBS Studio to Nginx service.
 Depending on your local IP addres it could be something like that: rtmp://192.168.1.XX:1935/app/stream

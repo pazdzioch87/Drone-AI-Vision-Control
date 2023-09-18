@@ -1,0 +1,23 @@
+authtoken: YOUR_NGROK_AUTH_TOKEN_HERE
+connect_timeout: 30s
+console_ui: true
+console_ui_color: transparent
+heartbeat_interval: 1m
+heartbeat_tolerance: 5s
+inspect_db_size: 104857600 # 100mb
+log_level: info
+log_format: json
+region: eu
+remote_management: false
+update_channel: stable
+update_check: false
+version: 2
+web_addr: localhost:4040
+tunnels:
+  controlapi:
+    addr: controlapi:8001
+    proto: http
+
+  nginx:
+    addr: nginx:1935
+    proto: tcp
