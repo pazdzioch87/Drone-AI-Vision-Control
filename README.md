@@ -24,7 +24,7 @@ For simplicity: you can also run this Demo without any drone - by using **OBS St
 
 
 ## 💻 Install (Docker & Ngrok account required)
-Installation instruction assumes that docker engine and docker compose plugin are installed on your machine.
+Installation instruction assumes that docker engine and docker compose plugin are installed on your machine (in case of Drone version). For OBS version no Ngrok is required due to operation only on local machine.
 **1.** Run ControlBroker service to handle SignalR communication
 ```bash
 # from the main repo directory - call following command:
@@ -36,6 +36,7 @@ docker compose up controlapi
 docker compose up nginx
 ```
 **3.** Run Ngrok to publish services endpoint to the internet (required only for drone verion - complex). Please read what Ngrok is and please be aware of publishing your machine port to the internet.
+If you want to try it with OBS you can skip that step.
 ```bash
 # this step let us to avoid router and OS firewall which could bloks services port - preventing correct work
 # before we run ngrok we had to place our personal auth token to the docker-compose.yml
@@ -44,8 +45,14 @@ docker compose up nginx
 # run ngrok
 docker compose up ngrok
 ```
-**4.** Set up [drone application](https://github.com/pazdzioch87/remote_guard_drone) or forward your PC camera by OBS Studio to Nginx service.
-Depending on your local IP addres it could be something like that: rtmp://192.168.1.XX:1935/app/stream
+**4.** Deploy and set up [drone application](https://github.com/pazdzioch87/remote_guard_drone) or forward your PC camera by OBS Studio to Nginx service.
+a) Drone version:
+Go to http://localhost:4040 (this is ngrok local interface) and take both addresses (with extra suffix).
+https://xxxx-xxx-xx-xxx-xx.ngrok-free.app/movementHub we use this addres for ControlBroker
+rtmp://x.tcp.xx.ngrok.io:xxxxx/app/stream modify and use the second addres for Nginx RTMP
+b) OBS version:
+http://localhost:8001/movementHub for ControlBroker
+rtmp://localhost:1935/app/stream for Nginx RTMP
 Port 1935 and "app" is obligatory. It is due to the nginx configuration. Stream key ("stream" in my case) could be set as you wish.
 
 **5.** Now when we have video stream provided we can run computer vision processing.
@@ -53,8 +60,10 @@ Port 1935 and "app" is obligatory. It is due to the nginx configuration. Stream 
 # go to AIVisionProcessing directory and run terminal
 # install dependencies
 pip install -r requirements.txt
-# run video processing
-python run.py --source rtmp://192.168.1.18:1935/app/stream --weights drone_gestures.pt --show-preview --process-connection
+# run video processing for Drone version
+python run.py --source rtmp://x.tcp.xx.ngrok.io:xxxxx/app/stream --weights drone_gestures.pt --show-preview --process-connection
+# run video processing for OBS version
+python run.py --source rtmp://localhost:1935/app/stream --weights drone_gestures.pt --show-preview --process-connection
 ```
 ## :memo: License
 **AGPL-3.0 License**

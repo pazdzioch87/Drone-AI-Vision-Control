@@ -90,7 +90,7 @@ def main(
         
         if process_connection:
             # send signalr masseges here
-            print(f'{detections}')
+            # print(f'{detections}')
             for detection in detections:
                 x1, y1, x2, y2 = detection[0]
                 confidence = detection[2]
