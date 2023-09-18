@@ -6,7 +6,6 @@ import time
 from dataclasses import dataclass
 from pathlib import Path
 from threading import Thread
-from urllib.parse import urlparse
 
 import cv2
 import numpy as np

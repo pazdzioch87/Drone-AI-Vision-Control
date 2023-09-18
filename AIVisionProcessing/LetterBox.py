@@ -2,11 +2,6 @@
 
 import cv2
 import numpy as np
-import math
-import random
-from copy import deepcopy
-import torch
-import torchvision.transforms as T
 
 class LetterBox:
     """Resize image and padding for detection, instance segmentation, pose."""

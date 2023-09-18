@@ -23,8 +23,8 @@ For simplicity: you can also run this Demo without any drone - by using **OBS St
 
 
 
-## 💻 Install
-
+## 💻 Install (Docker required)
+Installation instruction assumes that docker engine and docker compose plugin are installed on your machine.
 **1.** Run ControlBroker service to handle SignalR communication
 ```bash
 # from the main repo directory - call following command:
@@ -51,11 +51,8 @@ Port 1935 and "app" is obligatory. It is due to the nginx configuration. Stream 
 # go to AIVisionProcessing directory and run terminal
 # install dependencies
 pip install -r requirements.txt
-
-```
-## 📸 Execute
-
-```bash
-# still in the AIVisionProcessing directory context
+# run video processing
 python run.py --source rtmp://192.168.1.18:1935/app/stream --weights drone_gestures.pt --show-preview --process-connection
 ```
+## :memo: License
+**AGPL-3.0 License**

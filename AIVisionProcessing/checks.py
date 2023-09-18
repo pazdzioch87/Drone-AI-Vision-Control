@@ -1,25 +1,7 @@
 # Ultralytics YOLO 🚀, AGPL-3.0 license
-import contextlib
-import glob
-import inspect
+
 import math
-import os
-import platform
-import re
-import shutil
-import subprocess
-import time
-from pathlib import Path
-from typing import Optional
-
-import cv2
-import numpy as np
-import pkg_resources as pkg
-import psutil
-import requests
 import torch
-from matplotlib import font_manager
-
 from ultralytics.utils import (LOGGER)
 
 def check_imgsz(imgsz, stride=32, min_dim=1, max_dim=2, floor=0):
