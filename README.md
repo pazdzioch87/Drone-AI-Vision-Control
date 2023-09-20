@@ -7,11 +7,11 @@
 </p>
 
 ## :book: Introduction
-This demo is the proof of concept of drones and AI vision combination. If we can enforce the drone to take off and landing by gestures we can also do mach more complicated tasks. The only limitation is our imagination :rocket: :)
+This demo is the proof of concept of drones and AI vision combination. Thanks to [Roboflow Workspace]("https://app.roboflow.com/") it's very easy to prepare your custom model. If we can enforce the drone to take off and landing by gestures we can also do mach more complicated tasks. The only limitation is our imagination :rocket::wink:
 
 ## :hammer: Tech setup
 This demo is prepared to use with **DJI** drones which supports MobileSDK **4.16.4** (V5 drones are not supported - like Mini 3 series). In my case it is DJI Mini 2.
-You can find [drone application](https://github.com/pazdzioch87/remote_guard_drone) on my another repository which is fork from original DJI sample. This application has three main tasks: 
+You can find [drone application](https://github.com/pazdzioch87/remote_guard_drone/tree/feature/remote_guard_drone) on my another repository which is fork from original DJI sample (the proper branch is feature/remote_guard_drone). This application has three main tasks: 
 - send RTMP stream
 - receive SignalR messages 
 - and execute commands to drone
