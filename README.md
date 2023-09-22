@@ -1,13 +1,13 @@
 <h1 align="center">Drone AI vision control</h1>
 
 <p align="center">
-    <a href="https://youtu.be/aaa">
-        <img src="https://user-images.githubusercontent.com/fff/ddd.jpg" alt="count-objects-crossing-line">
+    <a href="https://youtu.be/gUGmVCZrims">
+        <img src="https://img.youtube.com/vi/gUGmVCZrims/sddefault.jpg" alt="count-objects-crossing-line">
     </a>
 </p>
 
 ## :book: Introduction
-This demo is the proof of concept of drones and AI vision combination. Thanks to [Roboflow Workspace]("https://app.roboflow.com/") it's very easy to prepare your custom model. If we can enforce the drone to take off and landing by gestures we can also do mach more complicated tasks. The only limitation is our imagination :rocket::wink:
+This demo is the proof of concept of drones and AI vision combination. Thanks to [Roboflow Workspace](https://app.roboflow.com/) it's very easy to prepare your custom model. If we can enforce the drone to take off and landing by gestures we can also do mach more complicated tasks. The only limitation is our imagination :rocket::wink:
 
 ## :hammer: Tech setup
 This demo is prepared to use with **DJI** drones which supports MobileSDK **4.16.4** (V5 drones are not supported - like Mini 3 series). In my case it is DJI Mini 2.

@@ -116,11 +116,21 @@ def gesture_recognition(detection: DetectionDto):
     global gestureCache
     global hub_connection
     gestureCache.append(detection.label)
-    if len(gestureCache) > 3:
-        if all(element == detection.label for element in gestureCache):
+    if all(element == detection.label for element in gestureCache):
+        if len(gestureCache) >= 1 and detection.label == 'down':
             hub_connection.send("SendDetection", [detection])
             LOGGER.info(f'Detected gesture: {detection.label}')
+            gestureCache = []
+            return
+        if len(gestureCache) >= 5 and detection.label == 'up':
+            hub_connection.send("SendDetection", [detection])
+            LOGGER.info(f'Detected gesture: {detection.label}')
+            gestureCache = []
+            return
+        return
+    else:
         gestureCache = []
+        return
 
 def parse_opt():
     parser = argparse.ArgumentParser()
